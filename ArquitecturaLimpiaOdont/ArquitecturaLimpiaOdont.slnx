@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Api/" />
+  <Folder Name="/Core/">
+    <Project Path="ArquitecturaLimpiaOdont.Domain/ArquitecturaLimpiaOdont.Domain.csproj" Id="2769c43e-67e6-4583-818f-9ca8840fb5ff" />
+  </Folder>
+  <Folder Name="/Infrastructure/" />
+  <Folder Name="/Tests/" />
+</Solution>
