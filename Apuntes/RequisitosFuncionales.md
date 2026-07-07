@@ -5,3 +5,10 @@ Posibilidad de cancelar y marcar como completadas las citas
 Validación para que un mismo dentista no tenga dos citas en el mismo horario
 Consultas de citas filtradas por fecha, consultorio, paciente o dentista
 Solo usuarios administradores deben tener permiso para hacer cambios en el sistema
+
+Requisitos No Funcionales
+Flexibilidad y mantenibilidad
+Facilidad para pruebas automatizadas
+
+¿Por qué Arquitectura Limpia?
+Aislar la lógica de negocio de detalles técnicos como frameworks, bases de datos o servidores web.
