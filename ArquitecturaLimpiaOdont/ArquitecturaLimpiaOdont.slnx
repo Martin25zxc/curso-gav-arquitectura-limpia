@@ -4,5 +4,7 @@
     <Project Path="ArquitecturaLimpiaOdont.Domain/ArquitecturaLimpiaOdont.Domain.csproj" Id="2769c43e-67e6-4583-818f-9ca8840fb5ff" />
   </Folder>
   <Folder Name="/Infrastructure/" />
-  <Folder Name="/Tests/" />
+  <Folder Name="/Tests/">
+    <Project Path="ArquitecturaLimpiaOdont.Tests/ArquitecturaLimpiaOdont.Tests.csproj" Id="eb9ea033-049c-4419-90cb-45c5d6d74318" />
+  </Folder>
 </Solution>

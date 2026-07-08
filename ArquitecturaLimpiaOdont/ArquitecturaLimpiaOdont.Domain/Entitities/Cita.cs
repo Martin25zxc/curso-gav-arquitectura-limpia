@@ -1,4 +1,5 @@
 ﻿using ArquitecturaLimpiaOdont.Domain.Enums;
+using ArquitecturaLimpiaOdont.Domain.Value_Objects;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,18 +14,13 @@ public class Cita
     public Guid Dentistald { get; private set; }
     public Guid Consultoriold { get; private set; }
     public EstadoCita Estado { get; private set; }
-    public DateTime FechaInicio { get; private set; }
-    public DateTime FechaFin { get; private set; }
+    public IntervalTime IntervalTime { get; private set; }
     public Paciente? Paciente { get; private set; }
     public Dentista? Dentista { get; private set; }
     public Consultorio? Consultorio { get; private set; }
-    public Cita(Guid pacienteId, Guid dentistaId, Guid consultorioId, DateTime fechaInicio, DateTime fechaFin)
+    public Cita(Guid pacienteId, Guid dentistaId, Guid consultorioId, IntervalTime intervalTime)
     {
-        if(fechaInicio > fechaFin)
-        {
-            throw new BusinessRuleException($"La fecha de inicio no peude ser posterior a la fecha de fin");
-        }
-        if(fechaInicio < DateTime.UtcNow)
+        if (intervalTime.Inicio < DateTime.UtcNow)
         {
             throw new BusinessRuleException($"La fecha de inicio no puede ser anterior a la fecha actual");
         }
@@ -32,8 +28,7 @@ public class Cita
         PacienteId = pacienteId;
         Dentistald = dentistaId;
         Consultoriold = consultorioId;
-        FechaInicio = fechaInicio;
-        FechaFin = fechaFin;
+        IntervalTime = intervalTime;
         Estado = EstadoCita.Programada;
         Id = Guid.CreateVersion7();
     }
