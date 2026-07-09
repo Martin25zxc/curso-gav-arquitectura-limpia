@@ -11,8 +11,8 @@ public class Cita
 {   
     public Guid Id { get; private set; }
     public Guid PacienteId { get; private set; }
-    public Guid Dentistald { get; private set; }
-    public Guid Consultoriold { get; private set; }
+    public Guid DentistaId { get; private set; }
+    public Guid ConsultorioId { get; private set; }
     public EstadoCita Estado { get; private set; }
     public IntervalTime IntervalTime { get; private set; }
     public Paciente? Paciente { get; private set; }
@@ -26,8 +26,8 @@ public class Cita
         }
         //asignacion de Id
         PacienteId = pacienteId;
-        Dentistald = dentistaId;
-        Consultoriold = consultorioId;
+        DentistaId = dentistaId;
+        ConsultorioId = consultorioId;
         IntervalTime = intervalTime;
         Estado = EstadoCita.Programada;
         Id = Guid.CreateVersion7();

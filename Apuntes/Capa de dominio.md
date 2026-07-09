@@ -27,6 +27,7 @@ Un agregado es un conjunto de objetos del dominio (entidades y/o objetos de valo
 Está encabezado por una raíz de agregado, que es una entidad con ciclo de vida independiente y responsable de garantizar las invariantes del conjunto
 Cuando hablamos de invariantes, hablamos de reglas de negocio que se deben de cumplir siempre.
 
+Es decir que:
 Las propiedades de la entidad serán de solo lectura desde fuera de la clase
 Así, para cambiar cualquier valor del agregado, tendremos que usar métodos de la clase
 Y, a través de estos métodos, vamos a garantizar se cumplan las reglas del negocio

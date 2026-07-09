@@ -16,6 +16,11 @@ public class Paciente
         {
             throw new BusinessRuleException($"El {nameof(nombre)} es obligatorio");
         }
+
+        if(email == null)
+        {
+            throw new BusinessRuleException($"El {nameof(email)} es obligatorio");
+        }
         Nombre = nombre;
         Id = Guid.CreateVersion7();
         Email = email;
