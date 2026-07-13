@@ -1,0 +1,15 @@
+@ArquitecturaLimpiaOdont.Api_HostAddress = http://localhost:5183/api/consultorios
+
+
+###
+POST {{ArquitecturaLimpiaOdont.Api_HostAddress}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "consultorio A"
+}
+###
+GET {{ArquitecturaLimpiaOdont.Api_HostAddress}}/019f58ee-4037-7f4d-900f-30b98209fd68
+Content-Type: application/json
+Accept: application/json

@@ -6,9 +6,9 @@ using System.Text;
 
 namespace ArquitecturaLimpiaOdont.Persistance.Repositories;
 
-public class ConsultoriosRepository : Repository<Consultorio> , IRepositoryConsultorios
+public class RepositoryConsultorios : Repository<Consultorio> , IRepositoryConsultorios
 {
-    public ConsultoriosRepository(OdontDbContext context) : base(context)
+    public RepositoryConsultorios(OdontDbContext context) : base(context)
     {
             
     }

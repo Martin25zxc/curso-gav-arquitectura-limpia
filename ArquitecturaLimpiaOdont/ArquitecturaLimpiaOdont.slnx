@@ -1,10 +1,14 @@
 <Solution>
-  <Folder Name="/Api/" />
+  <Folder Name="/Api/">
+    <Project Path="ArquitecturaLimpiaOdont.Api/ArquitecturaLimpiaOdont.Api.csproj" Id="1adbc71c-8df3-45fe-9cf3-548c4dfe4790" />
+  </Folder>
   <Folder Name="/Core/">
     <Project Path="ArquitecturaLimpiaOdont.Application/ArquitecturaLimpiaOdont.Application.csproj" Id="cb684c8a-8f02-45b1-bc08-7c76a41033a1" />
     <Project Path="ArquitecturaLimpiaOdont.Domain/ArquitecturaLimpiaOdont.Domain.csproj" Id="2769c43e-67e6-4583-818f-9ca8840fb5ff" />
   </Folder>
-  <Folder Name="/Infrastructure/" />
+  <Folder Name="/Infrastructure/">
+    <Project Path="ArquitecturaLimpiaOdont.Persistance/ArquitecturaLimpiaOdont.Persistance.csproj" Id="d5a5dd2b-54af-4ea2-b265-d4f7f79958e8" />
+  </Folder>
   <Folder Name="/Tests/">
     <Project Path="ArquitecturaLimpiaOdont.Tests/ArquitecturaLimpiaOdont.Tests.csproj" Id="eb9ea033-049c-4419-90cb-45c5d6d74318" />
   </Folder>

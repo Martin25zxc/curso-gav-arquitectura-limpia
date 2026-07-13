@@ -19,6 +19,11 @@ public class OdontDbContext : DbContext
             
     }
 
-    public DbSet<Paciente> Pacientes { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+       base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(OdontDbContext).Assembly);
+    }
+   // public DbSet<Paciente> Pacientes { get; set; }
     public DbSet<Consultorio> Consultorios { get; set; }
 }
