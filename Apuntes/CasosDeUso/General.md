@@ -1,0 +1,1 @@
+Crear DTO por caso de uso, quizas se repite codigo, pero es parte del trade off

@@ -28,7 +28,7 @@ public class CreateConsultorioUseCaseHandlerTests
         _casoDeUso = new CreateConsultorioUseCaseHandler(_repositorio, _unidadDeTrabajo);
     }
     [TestMethod]
-    public async Task Handle_Command_Valido_ObttenerIdConsultorio()
+    public async Task Handle_Command_Valido_ObtenerIdConsultorio()
     {
         const string nombreConsultorio = "C de consultorio";
         var comando = new CreateConsultorioCommand { Nombre = nombreConsultorio };

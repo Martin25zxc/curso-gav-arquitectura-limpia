@@ -1,6 +1,7 @@
 ﻿using ArquitecturaLimpiaOdont.Api.DTOs.Consultorios;
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Commands.CreateConsultorio;
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Queries.GetDetailConsultorio;
+using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Queries.GetListConsultorios;
 using ArquitecturaLimpiaOdont.Application.Utilities.Mediator;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,14 @@ public class ConsultoriosController : Controller
             Id = id
         };
         var result = await _mediator.Send(comando);
+        return Ok(result);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        var query = new ListConsultoriosQuery();
+        var result = await _mediator.Send(query);
         return Ok(result);
     }
 }
