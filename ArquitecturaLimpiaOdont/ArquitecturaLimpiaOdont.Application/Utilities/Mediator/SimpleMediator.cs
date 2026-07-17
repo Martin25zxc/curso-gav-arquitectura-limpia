@@ -18,9 +18,40 @@ public class SimpleMediator : IMediator
 
     public async Task<TResponse> Send<TResponse>(IRequest<TResponse> request)
     {
+        await Validate(request);
+
+        var useCaseType = typeof(IRequestHandler<,>)
+            .MakeGenericType(request.GetType(), typeof(TResponse));
+        var useCase = _serviceProvider.GetService(useCaseType);
+        if(useCase == null)
+        {
+            throw new MediatorException($"No se encontró un handlger para {request.GetType().Name}");
+        }
+        //Obtener referencia del metodo
+        var metodo = useCaseType.GetMethod("Handle")!;
+        return await (Task<TResponse>)metodo.Invoke(useCase, new object[] { request })!;
+    }
+
+    public async Task Send(IRequest request)
+    {
+        await Validate(request);
+
+        var useCaseType = typeof(IRequestHandler<>).MakeGenericType(request.GetType());
+        var useCase = _serviceProvider.GetService(useCaseType);
+        if(useCase == null)
+        {
+            throw new MediatorException($"No se encontró un handlger para {request.GetType().Name}");
+        }
+        //Obtener referencia del metodo
+        var metodo = useCaseType.GetMethod("Handle")!;
+        await (Task)metodo.Invoke(useCase, new object[] { request })!;
+    }
+
+    private async Task Validate(object request)
+    {
         var tipoValidador = typeof(IValidator<>).MakeGenericType(request.GetType());
         var validator = _serviceProvider.GetService(tipoValidador);
-        if(validator != null)
+        if (validator != null)
         {
             var metodoValidar = tipoValidador.GetMethod("ValidateAsync")!;
             var tareaValidar = (Task<ValidationResult>)metodoValidar.Invoke(validator
@@ -32,17 +63,5 @@ public class SimpleMediator : IMediator
                 throw new ApplicationValidationException(validationResult);
             }
         }
-
-
-       var useCaseType = typeof(IRequestHandler<,>)
-            .MakeGenericType(request.GetType(), typeof(TResponse));
-        var useCase = _serviceProvider.GetService(useCaseType);
-        if(useCase == null)
-        {
-            throw new MediatorException($"No se encontró un handlger para {request.GetType().Name}");
-        }
-        //Obtener referencia del metodo
-        var metodo = useCaseType.GetMethod("Handle")!;
-        return await (Task<TResponse>)metodo.Invoke(useCase, new object[] { request })!;
     }
 }
