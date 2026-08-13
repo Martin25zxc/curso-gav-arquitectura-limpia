@@ -1,6 +1,7 @@
 using ArquitecturaLimpiaOdont.Api.Middleware.ExcepctionsHandlers;
 using ArquitecturaLimpiaOdont.Application;
 using ArquitecturaLimpiaOdont.Persistance;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,8 +23,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.MapScalarApiReference();
 }
 
 app.UseHandleException();
