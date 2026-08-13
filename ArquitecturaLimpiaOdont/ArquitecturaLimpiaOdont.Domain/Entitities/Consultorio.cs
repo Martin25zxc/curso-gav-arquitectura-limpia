@@ -7,11 +7,22 @@ public class Consultorio
 
     public Consultorio(string nombre)
     {
+        AplicarReglaDeNegocioNombre(nombre);
+        Nombre = nombre;
+        Id = Guid.CreateVersion7();
+    }
+
+    public void UpdateNombre(string nombre)
+    {
+        AplicarReglaDeNegocioNombre(nombre);
+        Nombre = nombre;
+    }
+
+    private void AplicarReglaDeNegocioNombre(string nombre)
+    {
         if (string.IsNullOrWhiteSpace(nombre))
         {
             throw new BusinessRuleException($"El {nameof(nombre)} es obligatorio");
         }
-        Nombre = nombre;
-        Id = Guid.CreateVersion7();
     }
 }

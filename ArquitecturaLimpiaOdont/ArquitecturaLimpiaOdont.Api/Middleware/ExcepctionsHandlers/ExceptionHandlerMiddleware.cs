@@ -40,6 +40,19 @@ public class ExceptionHandlerMiddleware
                 httpStatusCode = HttpStatusCode.BadRequest;
                 resultado = JsonSerializer.Serialize(exValidacion.ErroresDeValidacion);
                 break;
+             default:
+                httpStatusCode = HttpStatusCode.InternalServerError;
+                // si es dev devolver el error completo, si es prod solo un mensaje generico
+                if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+                {
+                    resultado = JsonSerializer.Serialize(new { error = exception.Message, stackTrace = exception.StackTrace });
+                }
+                else
+                {
+                    resultado = JsonSerializer.Serialize(new { error = "Ocurrió un error inesperado." });
+                }
+
+                break;
 
         }
         context.Response.StatusCode = (int)httpStatusCode;
