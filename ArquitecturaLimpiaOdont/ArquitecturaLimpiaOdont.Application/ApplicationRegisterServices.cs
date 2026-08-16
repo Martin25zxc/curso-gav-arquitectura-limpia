@@ -1,4 +1,5 @@
 ﻿using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Commands.CreateConsultorio;
+using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Commands.DeleteConsultorio;
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Commands.UpdateConsultorio;
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Queries.GetDetailConsultorio;
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Queries.GetListConsultorios;
@@ -17,6 +18,7 @@ public static class ApplicationRegisterServices
         services.AddTransient<IMediator, SimpleMediator>();
         services.AddScoped<IRequestHandler<CreateConsultorioCommand, Guid>, CreateConsultorioUseCaseHandler>();
         services.AddScoped<IRequestHandler<UpdateConsultorioCommand>, UpdateConsultorioUseCaseHandler>();
+        services.AddScoped<IRequestHandler<DeleteConsultorioCommand>, DeleteConsultorioUseCaseHandler>();
         services.AddScoped<IRequestHandler<GetDetailConsultorioQuery, ConsultorioDetailDTO>, GetDetailConsultorioUseCaseHandler>();
         services.AddScoped<IRequestHandler<ListConsultoriosQuery, List<ListConsultoriosDTO>>, ListConsultoriosUseCaseHandler>();
 

@@ -1,5 +1,6 @@
 ﻿using ArquitecturaLimpiaOdont.Api.DTOs.Consultorios;
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Commands.CreateConsultorio;
+using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Commands.DeleteConsultorio;
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Commands.UpdateConsultorio;
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Queries.GetDetailConsultorio;
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Queries.GetListConsultorios;
@@ -51,7 +52,7 @@ public class ConsultoriosController : Controller
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(Guid id, [FromBody] UpdateConsultoriosDTO updateConsultoriosDTO)
+    public async Task<IActionResult> Put(Guid id, [FromBody] UpdateConsultorioDTO updateConsultoriosDTO)
     {
         var comando = new UpdateConsultorioCommand
         {
@@ -60,5 +61,17 @@ public class ConsultoriosController : Controller
         };
         await _mediator.Send(comando);
         return Ok();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var comando = new DeleteConsultorioCommand
+        {
+            Id = id
+        };
+
+        await _mediator.Send(comando);
+        return NoContent();
     }
 }

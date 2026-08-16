@@ -2,7 +2,7 @@
 
 namespace ArquitecturaLimpiaOdont.Api.DTOs.Consultorios;
 
-public class UpdateConsultoriosDTO
+public class UpdateConsultorioDTO
 {
     [Required(ErrorMessage = "El nombre es requerido")]
     [MaxLength(150, ErrorMessage = "El nombre no puede exceder los 100 caracteres")]
