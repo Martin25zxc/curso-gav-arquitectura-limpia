@@ -27,4 +27,10 @@ public class Dentista
         Id = Guid.CreateVersion7();
         Email = email;
     }
+    
+    private Dentista() 
+    {
+
+        Email = default!;
+    }
 }

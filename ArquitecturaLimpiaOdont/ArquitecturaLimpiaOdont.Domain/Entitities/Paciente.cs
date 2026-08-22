@@ -26,4 +26,9 @@ public class Paciente
         Email = email;
     }
 
+    private Paciente()
+    {
+        Email = default!;
+    }
+
 }

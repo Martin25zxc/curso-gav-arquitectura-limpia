@@ -5,6 +5,7 @@ using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Queries.GetDetai
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Queries.GetListConsultorios;
 using ArquitecturaLimpiaOdont.Application.Utilities.Mediator;
 using Microsoft.Extensions.DependencyInjection;
+using Scrutor;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,11 +17,32 @@ public static class ApplicationRegisterServices
     public static IServiceCollection AgregarServiciosDeApplication(this IServiceCollection services)
     {
         services.AddTransient<IMediator, SimpleMediator>();
-        services.AddScoped<IRequestHandler<CreateConsultorioCommand, Guid>, CreateConsultorioUseCaseHandler>();
-        services.AddScoped<IRequestHandler<UpdateConsultorioCommand>, UpdateConsultorioUseCaseHandler>();
-        services.AddScoped<IRequestHandler<DeleteConsultorioCommand>, DeleteConsultorioUseCaseHandler>();
-        services.AddScoped<IRequestHandler<GetDetailConsultorioQuery, ConsultorioDetailDTO>, GetDetailConsultorioUseCaseHandler>();
-        services.AddScoped<IRequestHandler<ListConsultoriosQuery, List<ListConsultoriosDTO>>, ListConsultoriosUseCaseHandler>();
+
+        services.Scan(scan =>
+        scan.FromAssembliesOf(typeof(IMediator))
+        .AddClasses(c => c.AssignableTo(typeof(IRequestHandler<>)))
+        .AsImplementedInterfaces()
+        .WithScopedLifetime());
+
+
+    
+        services.Scan(scan =>
+        scan.FromAssembliesOf(typeof(IMediator))
+        //sin response
+        .AddClasses(c => c.AssignableTo(typeof(IRequestHandler<>)))
+        .AsImplementedInterfaces()
+        .WithScopedLifetime()
+        //con response
+        .AddClasses(c => c.AssignableTo(typeof(IRequestHandler<,>)))
+        .AsImplementedInterfaces()
+        .WithScopedLifetime());
+
+
+        //services.AddScoped<IRequestHandler<CreateConsultorioCommand, Guid>, CreateConsultorioUseCaseHandler>();
+        //services.AddScoped<IRequestHandler<UpdateConsultorioCommand>, UpdateConsultorioUseCaseHandler>();
+        //services.AddScoped<IRequestHandler<DeleteConsultorioCommand>, DeleteConsultorioUseCaseHandler>();
+        //services.AddScoped<IRequestHandler<GetDetailConsultorioQuery, ConsultorioDetailDTO>, GetDetailConsultorioUseCaseHandler>();
+        //services.AddScoped<IRequestHandler<ListConsultoriosQuery, List<ListConsultoriosDTO>>, ListConsultoriosUseCaseHandler>();
 
         return services;
     }

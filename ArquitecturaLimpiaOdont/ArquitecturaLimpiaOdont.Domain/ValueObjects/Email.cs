@@ -20,4 +20,9 @@ public record Email
         }
         Value = email;
     }
+
+    private Email()
+    {
+        
+    }
 }

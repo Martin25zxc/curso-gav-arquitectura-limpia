@@ -19,4 +19,8 @@ public record IntervalTime
         Inicio = inicio;
         Fin = fin;
     }
+    private IntervalTime()
+    {
+            
+    }
 }

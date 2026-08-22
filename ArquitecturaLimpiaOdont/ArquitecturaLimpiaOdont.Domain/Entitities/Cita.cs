@@ -50,4 +50,9 @@ public class Cita
         }
         Estado = EstadoCita.Completada;
     }
+
+    private Cita()
+    {
+        IntervalTime = default!;
+    }
 }
