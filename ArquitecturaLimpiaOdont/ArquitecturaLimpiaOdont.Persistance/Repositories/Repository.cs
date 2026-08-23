@@ -33,6 +33,11 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
         return Task.CompletedTask;
     }
 
+    public async Task<int> ObtenerCantidadTotalRegistros()
+    {
+        return await _context.Set<TEntity>().CountAsync();
+    }
+
     public async Task<TEntity?> ObtenerPorId(Guid id)
     {
         return await _context.Set<TEntity>().FindAsync(id);

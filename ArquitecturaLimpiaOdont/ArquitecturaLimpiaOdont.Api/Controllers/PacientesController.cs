@@ -1,5 +1,7 @@
 ﻿using ArquitecturaLimpiaOdont.Api.DTOs.Pacientes;
+using ArquitecturaLimpiaOdont.Api.Utilities;
 using ArquitecturaLimpiaOdont.Application.UseCases.Pacientes.Commands.CreatePaciente;
+using ArquitecturaLimpiaOdont.Application.UseCases.Pacientes.Queries.GetListPacientes;
 using ArquitecturaLimpiaOdont.Application.Utilities.Mediator;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,5 +26,13 @@ public class PacientesController:ControllerBase
             Email = createPaciente.Email
         });
         return Ok(pacienteId);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetPacientes([FromQuery] ListPacientesQuery query)
+    {
+        var pacientes = await _mediator.Send(query);
+        HttpContext.InsertarPaginacionEnCabecera(pacientes.Total);
+        return Ok(pacientes.Items);
     }
 }
