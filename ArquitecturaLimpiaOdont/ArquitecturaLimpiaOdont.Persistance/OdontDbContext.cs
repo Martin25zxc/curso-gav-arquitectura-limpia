@@ -24,6 +24,6 @@ public class OdontDbContext : DbContext
        base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(OdontDbContext).Assembly);
     }
-   // public DbSet<Paciente> Pacientes { get; set; }
+    public DbSet<Paciente> Pacientes { get; set; }
     public DbSet<Consultorio> Consultorios { get; set; }
 }

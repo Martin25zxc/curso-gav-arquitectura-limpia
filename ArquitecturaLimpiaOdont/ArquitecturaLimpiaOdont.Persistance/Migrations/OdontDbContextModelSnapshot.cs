@@ -52,6 +52,8 @@ namespace ArquitecturaLimpiaOdont.Persistance.Migrations
 
                     b.ComplexProperty(typeof(Dictionary<string, object>), "Email", "ArquitecturaLimpiaOdont.Domain.Entitities.Paciente.Email#Email", b1 =>
                         {
+                            b1.IsRequired();
+
                             b1.Property<string>("Value")
                                 .IsRequired()
                                 .HasMaxLength(254)
@@ -61,7 +63,7 @@ namespace ArquitecturaLimpiaOdont.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Paciente");
+                    b.ToTable("Pacientes");
                 });
 #pragma warning restore 612, 618
         }

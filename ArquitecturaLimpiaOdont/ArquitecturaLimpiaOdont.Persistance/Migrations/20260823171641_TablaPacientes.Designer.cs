@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArquitecturaLimpiaOdont.Persistance.Migrations
 {
     [DbContext(typeof(OdontDbContext))]
-    [Migration("20260818020334_TablaPacientes")]
+    [Migration("20260823171641_TablaPacientes")]
     partial class TablaPacientes
     {
         /// <inheritdoc />
@@ -55,6 +55,8 @@ namespace ArquitecturaLimpiaOdont.Persistance.Migrations
 
                     b.ComplexProperty(typeof(Dictionary<string, object>), "Email", "ArquitecturaLimpiaOdont.Domain.Entitities.Paciente.Email#Email", b1 =>
                         {
+                            b1.IsRequired();
+
                             b1.Property<string>("Value")
                                 .IsRequired()
                                 .HasMaxLength(254)
@@ -64,7 +66,7 @@ namespace ArquitecturaLimpiaOdont.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Paciente");
+                    b.ToTable("Pacientes");
                 });
 #pragma warning restore 612, 618
         }
