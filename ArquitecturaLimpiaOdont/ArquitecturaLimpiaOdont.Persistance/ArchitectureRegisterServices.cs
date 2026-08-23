@@ -15,6 +15,7 @@ public static class ArchitectureRegisterServices
 
         services.AddScoped<IRepositoryConsultorios, RepositoryConsultorios>();
         services.AddScoped<IRepositoryPacientes, RepositoryPacientes>();
+        services.AddScoped<IRepositoryDentistas, RepositoryDentistas>();
         services.AddScoped<IUnitOfWork, UnitOfWorkEF>();
         return services;
     }

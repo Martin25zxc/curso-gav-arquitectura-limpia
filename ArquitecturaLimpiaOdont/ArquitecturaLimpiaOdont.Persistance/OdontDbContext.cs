@@ -26,4 +26,5 @@ public class OdontDbContext : DbContext
     }
     public DbSet<Paciente> Pacientes { get; set; }
     public DbSet<Consultorio> Consultorios { get; set; }
+    public DbSet<Dentista> Dentistas { get; set; }
 }

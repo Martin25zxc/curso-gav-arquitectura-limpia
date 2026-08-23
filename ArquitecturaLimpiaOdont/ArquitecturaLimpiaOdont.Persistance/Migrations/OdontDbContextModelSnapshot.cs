@@ -39,6 +39,33 @@ namespace ArquitecturaLimpiaOdont.Persistance.Migrations
                     b.ToTable("Consultorios");
                 });
 
+            modelBuilder.Entity("ArquitecturaLimpiaOdont.Domain.Entitities.Dentista", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.ComplexProperty(typeof(Dictionary<string, object>), "Email", "ArquitecturaLimpiaOdont.Domain.Entitities.Dentista.Email#Email", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasMaxLength(254)
+                                .HasColumnType("nvarchar(254)")
+                                .HasColumnName("Email");
+                        });
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Dentistas");
+                });
+
             modelBuilder.Entity("ArquitecturaLimpiaOdont.Domain.Entitities.Paciente", b =>
                 {
                     b.Property<Guid>("Id")
