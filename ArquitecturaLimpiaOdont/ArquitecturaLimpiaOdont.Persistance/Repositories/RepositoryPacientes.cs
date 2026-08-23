@@ -19,8 +19,19 @@ public class RepositoryPacientes:Repository<Paciente>, IRepositoryPacientes
 
     public async Task<IEnumerable<Paciente>> GetFilteredPacientes(FilterPacientesDTO filter)
     {
-        
-        return await _context.Pacientes.OrderBy(p => p.Nombre)
+        var query = _context.Pacientes.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(filter.Nombre))
+        {
+            query = query.Where(p => p.Nombre.Contains(filter.Nombre));
+        }
+
+        if (!string.IsNullOrWhiteSpace(filter.Email))
+        {
+            query = query.Where(p => p.Email.Value.Contains(filter.Email));
+        }
+
+        return await query.OrderBy(p => p.Nombre)
             .Paginate(filter.Page, filter.RecordsPerPage)
             .ToListAsync();
     }

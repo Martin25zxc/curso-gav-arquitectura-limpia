@@ -3,6 +3,7 @@ using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Commands.DeleteC
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Commands.UpdateConsultorio;
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Queries.GetDetailConsultorio;
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Queries.GetListConsultorios;
+using ArquitecturaLimpiaOdont.Application.UseCases.Pacientes.Queries.GetDetailPaciente;
 using ArquitecturaLimpiaOdont.Application.Utilities.Mediator;
 using Microsoft.Extensions.DependencyInjection;
 using Scrutor;
@@ -18,12 +19,6 @@ public static class ApplicationRegisterServices
     {
         services.AddTransient<IMediator, SimpleMediator>();
 
-        services.Scan(scan =>
-        scan.FromAssembliesOf(typeof(IMediator))
-        .AddClasses(c => c.AssignableTo(typeof(IRequestHandler<>)))
-        .AsImplementedInterfaces()
-        .WithScopedLifetime());
-
 
     
         services.Scan(scan =>
@@ -36,7 +31,7 @@ public static class ApplicationRegisterServices
         .AddClasses(c => c.AssignableTo(typeof(IRequestHandler<,>)))
         .AsImplementedInterfaces()
         .WithScopedLifetime());
-
+       // services.AddScoped<IRequestHandler<GetDetailPacienteQuery, DetailPacienteDTO>, GetDetailPacienteUseCaseHandler>();
 
         //services.AddScoped<IRequestHandler<CreateConsultorioCommand, Guid>, CreateConsultorioUseCaseHandler>();
         //services.AddScoped<IRequestHandler<UpdateConsultorioCommand>, UpdateConsultorioUseCaseHandler>();

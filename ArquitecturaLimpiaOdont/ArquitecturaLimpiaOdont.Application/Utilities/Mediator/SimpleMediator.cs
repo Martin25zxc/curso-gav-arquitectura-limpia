@@ -25,7 +25,7 @@ public class SimpleMediator : IMediator
         var useCase = _serviceProvider.GetService(useCaseType);
         if(useCase == null)
         {
-            throw new MediatorException($"No se encontró un handlger para {request.GetType().Name}");
+            throw new MediatorException($"No se encontró un handler para {request.GetType().Name}");
         }
         //Obtener referencia del metodo
         var metodo = useCaseType.GetMethod("Handle")!;

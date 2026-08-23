@@ -12,15 +12,8 @@ public class Paciente
     public Email Email { get; private set; }
     public Paciente(string nombre, Email email)
     {
-        if (string.IsNullOrWhiteSpace(nombre))
-        {
-            throw new BusinessRuleException($"El {nameof(nombre)} es obligatorio");
-        }
-
-        if(email == null)
-        {
-            throw new BusinessRuleException($"El {nameof(email)} es obligatorio");
-        }
+        AplicarReglaNegocioNombre(nombre);
+        AplicarReglaNegocioEmail(email);
         Nombre = nombre;
         Id = Guid.CreateVersion7();
         Email = email;
@@ -31,4 +24,30 @@ public class Paciente
         Email = default!;
     }
 
+    public void ActualizarNombre(string nombre)
+    {
+        AplicarReglaNegocioNombre(nombre);
+        Nombre = nombre;
+    }
+
+    public void ActualizarEmail(Email email)
+    {
+        AplicarReglaNegocioEmail(email);
+        Email = email;
+    }
+
+    private void AplicarReglaNegocioNombre(string nombre)
+    {
+        if (string.IsNullOrWhiteSpace(nombre))
+        {
+            throw new BusinessRuleException($"El {nameof(nombre)} es obligatorio");
+        }
+    }
+    private void AplicarReglaNegocioEmail(Email email)
+    {
+        if (email == null)
+        {
+            throw new BusinessRuleException($"El {nameof(email)} es obligatorio");
+        }
+    }
 }

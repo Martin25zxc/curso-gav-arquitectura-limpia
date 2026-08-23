@@ -35,11 +35,11 @@ public class ConsultoriosController : Controller
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
-        var comando = new GetDetailConsultorioQuery
+        var query = new GetDetailConsultorioQuery
         {
             Id = id
         };
-        var result = await _mediator.Send(comando);
+        var result = await _mediator.Send(query);
         return Ok(result);
     }
 
