@@ -8,6 +8,11 @@ namespace ArquitecturaLimpiaOdont.Application.Exceptions;
 public class ApplicationValidationException : Exception
 {
     public List<string> ErroresDeValidacion { get; set; } = [];
+
+    public ApplicationValidationException(string mensajeDeError)
+    {
+        ErroresDeValidacion.Add(mensajeDeError);
+    }
     public ApplicationValidationException(ValidationResult validationResult)
     {
         ErroresDeValidacion.AddRange(validationResult.Errors.Select(e => e.ErrorMessage));
