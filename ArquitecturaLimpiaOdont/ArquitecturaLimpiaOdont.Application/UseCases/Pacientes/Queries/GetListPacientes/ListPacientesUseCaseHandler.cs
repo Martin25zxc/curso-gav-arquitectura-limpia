@@ -11,6 +11,7 @@ public class ListPacientesUseCaseHandler : IRequestHandler<ListPacientesQuery, P
     {
         _repositoryPacientes = repositoryPacientes;
     }
+
     public async Task<PagingDTO<ListPacientesDTO>> Handle(ListPacientesQuery request)
     {
        var pacientes = await _repositoryPacientes.GetFilteredPacientes(request);
