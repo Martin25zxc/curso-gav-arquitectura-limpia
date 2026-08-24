@@ -1,6 +1,6 @@
 ﻿using ArquitecturaLimpiaOdont.Application.Contracts.Repositories;
+using ArquitecturaLimpiaOdont.Application.Contracts.Repositories.Modelos;
 using ArquitecturaLimpiaOdont.Application.Exceptions;
-using ArquitecturaLimpiaOdont.Application.UseCases.Citas.Queries.GetListCitas;
 using ArquitecturaLimpiaOdont.Domain.Entitities;
 using ArquitecturaLimpiaOdont.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +28,7 @@ public class RepositoryCitas: Repository<Cita>, IRepositoryCitas
         && fin > c.IntervalTime.Inicio).AnyAsync();
     }
 
-    public async Task<IEnumerable<Cita>> GetFilteredCitas(FilterCitasDTO filter)
+    public async Task<IEnumerable<Cita>> GetFiltered(FilterCitasDTO filter)
     {
         var query = _context.Citas
             .Include(c => c.Paciente)
@@ -49,6 +49,11 @@ public class RepositoryCitas: Repository<Cita>, IRepositoryCitas
         if (filter.PacienteId.HasValue)
         {
             query = query.Where(c => c.PacienteId == filter.PacienteId);
+        }
+
+        if (filter.EstadoCita.HasValue)
+        {
+            query = query.Where(c => c.Estado == filter.EstadoCita);
         }
 
         return await query.Where(c=> c.IntervalTime.Inicio >= filter.Inicio && c.IntervalTime.Fin < filter.Fin)

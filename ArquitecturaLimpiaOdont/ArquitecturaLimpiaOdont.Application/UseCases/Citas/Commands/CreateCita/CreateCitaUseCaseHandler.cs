@@ -1,4 +1,5 @@
-﻿using ArquitecturaLimpiaOdont.Application.Contracts.Persistance;
+﻿using ArquitecturaLimpiaOdont.Application.Contracts.Notifications;
+using ArquitecturaLimpiaOdont.Application.Contracts.Persistance;
 using ArquitecturaLimpiaOdont.Application.Contracts.Repositories;
 using ArquitecturaLimpiaOdont.Application.Exceptions;
 using ArquitecturaLimpiaOdont.Application.Utilities.Mediator;
@@ -14,10 +15,13 @@ public class CreateCitaUseCaseHandler: IRequestHandler<CreateCitaCommand, Guid>
 {
     private readonly IRepositoryCitas _repositoryCitas;
     private readonly IUnitOfWork _unitOfWork;
-    public CreateCitaUseCaseHandler(IRepositoryCitas repositoryCitas, IUnitOfWork unitOfWork)
+    private readonly IServiceNotifications _serviceNotifications;
+
+    public CreateCitaUseCaseHandler(IRepositoryCitas repositoryCitas, IUnitOfWork unitOfWork, IServiceNotifications serviceNotifications)
     {
         _repositoryCitas = repositoryCitas;
         _unitOfWork = unitOfWork;
+        _serviceNotifications = serviceNotifications;
     }
 
     public async Task<Guid> Handle(CreateCitaCommand request)
@@ -31,11 +35,12 @@ public class CreateCitaUseCaseHandler: IRequestHandler<CreateCitaCommand, Guid>
         var intervaloDeTiempo = new IntervalTime(request.FechaInicio, request.FechaFin);
         var cita = new Cita(request.PacienteId, request.DentistaId, request.ConsultorioId, intervaloDeTiempo);
 
+        Guid? id = null;
         try
         {
             await _repositoryCitas.Agregar(cita);
             await _unitOfWork.Persistir();
-            return cita.Id;
+            id = cita.Id;
 
         }
         catch (Exception)
@@ -43,5 +48,11 @@ public class CreateCitaUseCaseHandler: IRequestHandler<CreateCitaCommand, Guid>
             await _unitOfWork.Reversar();
             throw;
         }
+
+        var citaDb = await _repositoryCitas.ObtenerPorId(id.Value);
+        var notificacionDto = citaDb!.ToDto();
+        await _serviceNotifications.EnviarConfirmacionesCita(notificacionDto);
+
+        return id.Value;
     }
 }

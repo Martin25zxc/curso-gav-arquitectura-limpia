@@ -14,7 +14,7 @@ public class GetListCitasUseCaseHandler : IRequestHandler<GetListCitasQuery, Lis
 
     public async  Task<List<ListCitaDTO>> Handle(GetListCitasQuery request)
     {
-        var citas = await _repositoryCitas.GetFilteredCitas(request);
+        var citas = await _repositoryCitas.GetFiltered(request);
         var citasDto = citas.Select(cita=> cita.ToDto()).ToList();
         return citasDto;
     }

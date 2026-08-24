@@ -1,4 +1,5 @@
-﻿using ArquitecturaLimpiaOdont.Application.Utilities.Commons;
+﻿using ArquitecturaLimpiaOdont.Application.Contracts.Repositories.Modelos;
+using ArquitecturaLimpiaOdont.Application.Utilities.Commons;
 using ArquitecturaLimpiaOdont.Application.Utilities.Mediator;
 using System;
 using System.Collections.Generic;
