@@ -8,5 +8,5 @@ namespace ArquitecturaLimpiaOdont.Application.Contracts.Repositories;
 
 public interface IRepositoryPacientes : IRepository<Paciente>
 {
-    Task<IEnumerable<Paciente> > GetFilteredPacientes(FilterPacientesDTO filter);
+    Task<IEnumerable<Paciente>> GetFilteredPacientes(FilterPacientesDTO filter);
 }

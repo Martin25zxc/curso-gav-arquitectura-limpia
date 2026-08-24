@@ -15,8 +15,4 @@
     <ProjectReference Include="..\ArquitecturaLimpiaOdont.Domain\ArquitecturaLimpiaOdont.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\Citas\Queries\" />
-  </ItemGroup>
-
 </Project>

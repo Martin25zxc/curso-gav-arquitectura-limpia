@@ -40,7 +40,11 @@ public class ExceptionHandlerMiddleware
                 httpStatusCode = HttpStatusCode.BadRequest;
                 resultado = JsonSerializer.Serialize(exValidacion.ErroresDeValidacion);
                 break;
-             default:
+            case BusinessRuleException exReglaNegocio:
+                httpStatusCode = HttpStatusCode.BadRequest;
+                resultado = JsonSerializer.Serialize(new { error = exReglaNegocio.Message });
+                break;
+            default:
                 httpStatusCode = HttpStatusCode.InternalServerError;
                 // si es dev devolver el error completo, si es prod solo un mensaje generico
                 if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
