@@ -1,4 +1,5 @@
-﻿using ArquitecturaLimpiaOdont.Domain.Enums;
+﻿using ArquitecturaLimpiaOdont.Domain.Commons;
+using ArquitecturaLimpiaOdont.Domain.Enums;
 using ArquitecturaLimpiaOdont.Domain.Value_Objects;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace ArquitecturaLimpiaOdont.Domain.Entitities;
 
-public class Cita
+public class Cita: EntidadAuditable
 {   
     public Guid Id { get; private set; }
     public Guid PacienteId { get; private set; }

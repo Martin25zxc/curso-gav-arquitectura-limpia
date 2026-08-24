@@ -1,6 +1,8 @@
-﻿namespace ArquitecturaLimpiaOdont.Domain.Entitities;
+﻿using ArquitecturaLimpiaOdont.Domain.Commons;
 
-public class Consultorio
+namespace ArquitecturaLimpiaOdont.Domain.Entitities;
+
+public class Consultorio : EntidadAuditable
 {
     public Guid Id { get; private set; }
     public string Nombre { get; private set; } = string.Empty;

@@ -1,11 +1,12 @@
-﻿using ArquitecturaLimpiaOdont.Domain.Value_Objects;
+﻿using ArquitecturaLimpiaOdont.Domain.Commons;
+using ArquitecturaLimpiaOdont.Domain.Value_Objects;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ArquitecturaLimpiaOdont.Domain.Entitities;
 
-public class Paciente
+public class Paciente : EntidadAuditable
 {
     public Guid Id { get; private set; }
     public string Nombre { get; private set; } = string.Empty;

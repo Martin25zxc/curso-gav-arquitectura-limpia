@@ -5,6 +5,7 @@ using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Commands.UpdateC
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Queries.GetDetailConsultorio;
 using ArquitecturaLimpiaOdont.Application.UseCases.Consultorios.Queries.GetListConsultorios;
 using ArquitecturaLimpiaOdont.Application.Utilities.Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ArquitecturaLimpiaOdont.Api.Controllers;

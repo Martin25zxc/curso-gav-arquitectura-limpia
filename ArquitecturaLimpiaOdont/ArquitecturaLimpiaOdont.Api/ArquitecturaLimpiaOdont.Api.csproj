@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ArquitecturaLimpiaOdont.Application\ArquitecturaLimpiaOdont.Application.csproj" />
+    <ProjectReference Include="..\ArquitecturaLimpiaOdont.Identity\ArquitecturaLimpiaOdont.Identity.csproj" />
     <ProjectReference Include="..\ArquitecturaLimpiaOdont.Infrastructure\ArquitecturaLimpiaOdont.Infrastructure.csproj" />
     <ProjectReference Include="..\ArquitecturaLimpiaOdont.Persistance\ArquitecturaLimpiaOdont.Persistance.csproj" />
   </ItemGroup>

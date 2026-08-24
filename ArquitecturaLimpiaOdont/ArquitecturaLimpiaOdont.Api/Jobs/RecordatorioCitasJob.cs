@@ -6,7 +6,7 @@ namespace ArquitecturaLimpiaOdont.Api.Jobs;
 public class RecordatorioCitasJob : BackgroundService
 {
     private readonly IServiceScopeFactory scopeFactory;
-    private readonly TimeZoneInfo zonaHoraria = = TimeZoneInfo.FindSystemTimeZoneById("Montevideo Standard Time");
+    private readonly TimeZoneInfo zonaHoraria = TimeZoneInfo.FindSystemTimeZoneById("Montevideo Standard Time");
 
     public RecordatorioCitasJob(IServiceScopeFactory scopeFactory)
     {

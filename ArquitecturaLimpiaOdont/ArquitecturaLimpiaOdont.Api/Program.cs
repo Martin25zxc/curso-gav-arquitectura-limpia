@@ -2,19 +2,27 @@ using ArquitecturaLimpiaOdont.Api.Middleware.ExcepctionsHandlers;
 using ArquitecturaLimpiaOdont.Application;
 using ArquitecturaLimpiaOdont.Persistance;
 using ArquitecturaLimpiaOdont.Infrastructure;
+using ArquitecturaLimpiaOdont.Identity;
 using Scalar.AspNetCore;
 using ArquitecturaLimpiaOdont.Application.Contracts.Notifications;
 using ArquitecturaLimpiaOdont.Api.Jobs;
+using ArquitecturaLimpiaOdont.Identity.Model;
+using System.Net;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(opciones =>
+{
+    opciones.Filters.Add(new AuthorizeFilter("esadmin"));
+});
 
 builder.Services.AgregarServiciosDeApplication();
 builder.Services.AgregarServiciosDeArchitecture();
 builder.Services.AgregarServiciosDeInfrastructure();
+builder.Services.AgregarServiciosDeIdentidad();
 
 builder.Services.AddHostedService<RecordatorioCitasJob>();
 
@@ -35,7 +43,7 @@ if (app.Environment.IsDevelopment())
             .DisableAgent();
     });
 }
-
+app.MapIdentityApi<Usuario>();
 app.UseHandleException();
 
 app.UseHttpsRedirection();

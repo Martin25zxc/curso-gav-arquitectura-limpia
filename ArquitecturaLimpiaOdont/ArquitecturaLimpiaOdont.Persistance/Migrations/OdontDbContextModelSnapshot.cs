@@ -18,7 +18,7 @@ namespace ArquitecturaLimpiaOdont.Persistance.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.9")
+                .HasAnnotation("ProductVersion", "10.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -32,14 +32,26 @@ namespace ArquitecturaLimpiaOdont.Persistance.Migrations
                     b.Property<Guid>("ConsultorioId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("CreadoPor")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("DentistaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Estado")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("PacienteId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UltimaFechaModificacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UltimaModificacionPor")
+                        .HasColumnType("nvarchar(max)");
 
                     b.ComplexProperty(typeof(Dictionary<string, object>), "IntervalTime", "ArquitecturaLimpiaOdont.Domain.Entitities.Cita.IntervalTime#IntervalTime", b1 =>
                         {
@@ -71,10 +83,22 @@ namespace ArquitecturaLimpiaOdont.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("CreadoPor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
+
+                    b.Property<DateTime?>("UltimaFechaModificacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UltimaModificacionPor")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -87,10 +111,22 @@ namespace ArquitecturaLimpiaOdont.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("CreadoPor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<DateTime?>("UltimaFechaModificacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UltimaModificacionPor")
+                        .HasColumnType("nvarchar(max)");
 
                     b.ComplexProperty(typeof(Dictionary<string, object>), "Email", "ArquitecturaLimpiaOdont.Domain.Entitities.Dentista.Email#Email", b1 =>
                         {
@@ -114,10 +150,22 @@ namespace ArquitecturaLimpiaOdont.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("CreadoPor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<DateTime?>("UltimaFechaModificacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UltimaModificacionPor")
+                        .HasColumnType("nvarchar(max)");
 
                     b.ComplexProperty(typeof(Dictionary<string, object>), "Email", "ArquitecturaLimpiaOdont.Domain.Entitities.Paciente.Email#Email", b1 =>
                         {
